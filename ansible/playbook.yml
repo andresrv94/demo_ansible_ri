@@ -1,0 +1,18 @@
+---
+- name: Instalar Apache HTTP Server y actualizar root dir de Apache
+  hosts: webservers
+  become: yes
+
+  tasks:
+  - name: Actualiza definicion de paquetes e instala Apache Web Server
+    apt:
+      name: apache2
+      update_cache: yes
+
+  - name: Copiar archivos de carpeta local html al root dir del virtualhost default de Apache
+    copy:
+      src: html/
+      dest: /var/www/html/
+      owner: root
+      group: root
+      mode: '0644'

@@ -5,7 +5,9 @@ Vagrant.configure("2") do |config|
 
     config.vm.define "instancia1" do |instancia1|
         instancia1.vm.network :private_network, ip: "192.168.56.253"
-        
+        config.ssh.insert_key = false # 1
+       
+        config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys" # 3
 
         instancia1.vm.provider "virtualbox" do |vb|
             vb.gui = false
@@ -17,6 +19,9 @@ Vagrant.configure("2") do |config|
     config.vm.define "instancia2" do |instancia2|
         instancia2.vm.network :private_network, ip: "192.168.56.254"
         
+        config.ssh.insert_key = false # 1
+       
+        config.vm.provision "file", source: "~/.ssh/id_rsa.pub", destination: "~/.ssh/authorized_keys" # 3
 
         instancia2.vm.provider "virtualbox" do |vb|
             vb.gui = false
