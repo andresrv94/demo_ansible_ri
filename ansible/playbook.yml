@@ -6,7 +6,7 @@
   tasks:
   - name: Actualiza definicion de paquetes e instala Apache Web Server
     apt:
-      name: apache2
+      name: [ 'apache2' ]
       update_cache: yes
 
   - name: Copiar archivos de carpeta local html al root dir del virtualhost default de Apache
